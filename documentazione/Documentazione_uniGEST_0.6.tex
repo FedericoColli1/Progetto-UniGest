@@ -1,0 +1,826 @@
+
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{hyperref}
+
+% Configurazione opzionale per personalizzare i link:
+\hypersetup{
+    colorlinks=false,        % colora i link invece di metterli in riquadri
+    linkcolor=black,         % colore dei link interni
+    urlcolor=black,          % colore degli URL
+    citecolor=red,          % colore delle citazioni
+    filecolor=magenta,      % colore dei link ai file
+    pdfborder={0 0 0},      % rimuove i bordi attorno ai link
+    pdftitle={UniGEST},     % titolo del PDF
+    pdfauthor={Andrea Ciervo, Mathias Bartolacelli, Federico Colli},
+    pdfsubject={Gestione dei processi delle pratiche universitarie}
+}
+
+
+\title{Gestione dei processi delle pratiche universitarie: UniGEST}
+\author{Andrea Ciervo, Mathias Bartolacelli, Federico Colli}
+\date{Giugno 2025}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Introduzione}
+L'obiettivo di questo progetto è quello di sviluppare un sistema per la descrizione e gestione dei processi aziendali, in particolare quelli universitari.\\
+Tali processi riguardano soprattutto la gestione di pratiche amministrative.
+Ci sono vari tipi di attori, tra cui:
+\begin{itemize}
+    \item Attori che possono richiedere l’inizio di una pratica (corpo docenti e ricercatori);
+    \item Unità operative dedicate a specifiche mansioni;
+    \item Amministrativi afferenti ad unità operative;
+    \item Utenti jolly che possono intervenire in ogni installe nella gestione della pratica.
+\end{itemize}
+Una pratica viene quindi aperta da una specifica persona e inizia un iter di passaggi amministrativi fino al suo compimento. Ogni passaggio è affidato ad una determinata unità operativa che una volta ricevuta la pratica la assegna ad una o più amministrativi di tale unità.
+Ogni passaggio specifica i documenti che l’incaricato del passaggio precedente, o qualunque altro attore, deve fornire e per ogni passaggio è anche descritta la lista dei documenti prodotti.
+
+\section{Analisi dei requisiti}
+\subsection{Utenti}
+Gli attori da considerare nel progetto sono suddivisi in:
+\begin{itemize}
+    \item Professori/Docenti
+    \item Ricercatori
+    \item Amministrativi
+    \item Direttore
+    \item Unità Operative
+    \item Utenti Jolly
+\end{itemize}
+
+La gestione degli attori verrà effettuata tramite una specializzazione di una classe base detta Utente dalla quale deriveranno gli attori Professori/Docenti, Ricercatori e Amministrativi. Gli amministrativi a loro volta saranno collegati a un’unità operativa della quale sarà indicato un direttore. Per quanto riguarda gli utenti Jolly, questi non saranno una specializzazione ma saranno definiti tramite un attributo booleano all’interno del database (di base indicato a false) il quale sarà modificabile solo dal database.\\
+Siccome questa applicazione verrà integrata nel sistema informatico dell'ateneo, non è prevista la registrazione di nuovi utenti.
+
+\subsection{Requisiti funzionali}
+
+\begin{itemize}
+    \item \textbf{Gestione delle pratiche}
+    \begin{itemize}
+        \item Le pratiche saranno aperte da Professori/Docenti o Ricercatori i quali, dopo aver effettuato l'accesso, tramite l'apposito bottone della creazione pratiche ne potranno realizzare una.
+        \item Durante la creazione sarà necessario scrivere una piccola descrizione della richiesta, caricare un primo documento d'avvio e la tipologia della richiesta (la quale sarà presa da un elenco realizzato a livello di database con annesso il numero di passaggi per il completamento e i documenti da realizzare per passaggio).
+        \item  Al completamento della richiesta questa sarà presa in carico dal direttore dell'unità operativa del primo passaggio il quale assegnerà la pratica a uno o più amministrativi.
+        \item Al termine del passaggio, che verrà effettuato in automatico, verrà aperta la pagina della gestione agli amministrativi assegnati al passaggio successivo della pratica. Al termine dell'ultimo passaggio lo stato della pratica viene modificato per definire la sua terminazione.\\
+        Il Jolly può anche forzare la chiusura di una pratica, indicandone il motivo.
+    \end{itemize}
+
+    \item \textbf{Gestione del passaggio}\\
+    
+Dopo che un passaggio viene assegnato a uno o più amministrativi questi produrranno i documenti necessari al singolo passaggio, i quali saranno salvati sull'area di memoria del server in cartelle indicate con l'id della pratica e il numero del passaggio, il quale sarà da -1(presenta i documenti caricati all'avvio dall'utente) a n-1, così da essere reperibili ai passaggi che le richiedono. Potranno essere visibili agli amministrativi dei passaggi successivi così da rispondere alla richiesta “Ogni passaggio specifica i documenti che l'incaricato del passaggio precedente, o qualunque altro attore, deve fornire.” e potranno essere anche utilizzati per stilare automaticamente la lista dei documenti prodotti durante il passaggio.
+Per effettuare la carica si dovrà necessitare di un pulsante presente nella pagina di dettaglio del passaggio accessibile agli amministratori o al Jolly.
+
+\item \textbf{Caricamento documenti}\\
+Il caricamento dei documenti verrà effettuato dagli utenti amministrativi e Jolly. Questo sarà effettuato in seguito all'assegnazione del passaggio per l'Amministrativo, solo sul suo attuale passaggio; mentre per il Jolly potrà essere effettuato in qualsiasi momento su qualsiasi passaggio.Inoltre anche l'utente base potrà caricare dei file, i quali saranno inseriti solamente nella cartella -1 dei passaggi e saranno caricati solo al momento della creazione della pratica, all'interno del selettore file presente nel form di caricamento.
+\item \textbf{Gestione con jolly}\\
+Il Jolly avrà la possibilità di osservare tutte le pratiche e i relativi passaggi, assegnare le pratiche agli amministrativi dell'unità indicata ed eventualmente forzare la chiusura o l'eliminazione di una pratica.
+\end{itemize}
+
+\subsection{Requisiti non funzionali}
+
+\subsubsection{Sicurezza}
+La sicurezza è garantita tramite:
+\begin{itemize}
+    \item privilegi basati sul ruolo (utenti, amministrativi, direttori e jolly)
+    \item gestione token tramite JWT
+    \item validazione utenti per effettuare modifiche
+    \item hashing password lato server
+\end{itemize}
+
+\subsubsection{Portabilità e Scalabilità}
+Portabilità e scalabilità sono garantite tramite la containerizzazione.
+
+\subsubsection{Affidabilità}
+L'affidabilità è garantita tramite la gestione dei rollback sul database per prevenire inconsistenze in caso di errori durante le operazioni di salvataggio o eliminazione dei dati. Questo approccio permetterà di annullare automaticamente eventuali modifiche parziali se un'operazione non viene completata correttamente, assicurando così l'integrità delle informazioni e la coerenza dei dati nel database.
+
+\subsection{Pagine necessarie}
+\begin{itemize}
+    \item Pagina di login 
+    \item Pagina con la lista delle pratiche aperte dall'utente (Per docenti e ricercatori)
+    \item Pagina con il form di creazione delle pratiche (Per docenti e ricercatori)
+    \item Pagina di assegnazione delle pratiche (Direttore dell'u. operativa)
+    \item Pagina di visualizzazione dei passaggi assegnati (Per amministrativi)
+    \item Pagina per caricamento File (Per amministrativi e Jolly)
+\end{itemize}
+Nota: gli utenti Jolly possono avere  accesso a tutte queste funzionalità e, inoltre, possono eliminare o terminare anticipatamente le pratiche in corso
+
+\subsection{Requisiti di sistema}
+\subsubsection{Database}
+Il database relazionale utilizzato è mySQL e si compone delle seguenti tabelle:
+\begin{itemize}
+    \item Utente, che contiene le informazioni di accesso di tutti gli utenti, inclusi username e password cifrata
+    \item Docente, che contiene una lista degli utenti che sono docenti
+    \item Ricercatore, che contiene una lista degli utenti che sono ricercatori
+    \item Amministrativo, che contiene una lista degli utenti che sono amministrativi, l'unità a cui appartengono e un bit che indica se sono direttori della propria unità
+    \item U. Operativa, che contiene una lista di tutte le unità operative
+    \item Assegnazione, che contiene i passaggi associati ad ogni amministrativo
+    \item Passaggio, che contiene una lista di informazioni relative ad ogni passaggio di ogni pratica
+    \item Pratica, contiene una lista di tutte le pratiche, aperte e non
+    \item Tipologia, che contiene, per ogni tipologia di pratica, informazioni quali il numero di passaggi e i passaggi
+\end{itemize}
+
+\subsubsection{Backend}
+L'applicazione sarà sviluppata utilizzando PHP, seguendo un'architettura basata sul pattern Model-View-Presenter (MVP) e mettendo a disposizione API REST tramite il presenter per l'interazione con il frontend.\\ In particolare:
+\begin{itemize}
+    \item Il Controller si occuperà di gestire le richieste HTTP e di indirizzarle verso i gateway appropriati,
+    \item Il Gateway avrà il compito di interagire con il model, fornendo all’utente le funzionalità richieste in base al percorso della richiesta,
+    \item Il Model sarà responsabile delle operazioni dirette sul database relative a una specifica entità.
+\end{itemize}
+
+\subsubsection{Frontend}
+Il frontend verrà sviluppato utilizzando HTML, CSS e Javascript, la libreria JQuery per la gestione degli eventi tramite chiamate AJAX e il framework Bootstrap per sfruttare strutture già realizzate.\\
+In particolare, per ogni pagina verrà creato un file HTML e un file JS e le funzionalità in comune tra più pagine verranno inserite in un file a parte.
+
+\subsubsection{Containerizzazione}
+Il sistema dovrà essere diviso in container specializzati, ognuno dei quali sarà progettato per gestire un singolo servizio o componente specifico. Questa scelta architetturale permetterà di isolare le varie funzionalità, migliorando la sicurezza, la stabilità e la manutenzione complessiva dell'applicazione.\\
+
+In particolare verranno costruiti i seguenti container:
+\begin{itemize}
+    \item un web-server per il frontend, che si occuperà di gestire solamente le pagine HTML e la comunicazione con il server backend tramite richieste JSON
+    \item un web-server per il backend, che si occuperà di gestire:
+        \begin{itemize}
+            \item le richieste ricevute,
+            \item le interazioni con il database
+            \item il salvataggio file sul filesystem del backend
+        \end{itemize}
+    \item un container che gestisce il PHPmyAdmin il quale permette una visualizzazione grafica del database
+    \item un container che gestisce il database per conservare i dati al suo interno
+\end{itemize}
+
+\subsubsection{Gestione del file system}
+Il sistema dovrà prevedere la gestione del filesystem, che consenta sia il caricamento di file da parte degli utenti sia la creazione automatica di cartelle dedicate al salvataggio dei documenti.\\
+Ogni pratica dovrà avere una propria cartella principale, all'interno della quale saranno contenute le sottocartelle corrispondenti ai vari passaggi della pratica.
+
+\section{Metodologia di sviluppo}
+\subsection{Metodologia scelta}
+Per questo progetto sarà adottata una metodologia di sviluppo basata sull'Extreme Programming che permetterà, tramite lo sviluppo e la consegna di piccoli incrementi di funzionalità ad ogni step, di adattarci velocemente ai cambiamenti dei requisiti, garantendo al tempo stesso una struttura di lavoro chiara e ben organizzata.\\
+Si è adottata l'\textbf{EP} poiché la realizzazione del progetto è stata attuata tramite il pair programming, così da avere uno scambio immediato di idee e la partecipazione continua di tutti i membri del gruppo allo sviluppo del codice in quantità più o meno elevata.
+
+\subsection{Membri del team}
+Il team di sviluppo sarà composto dai seguenti componenti: 
+\begin{itemize}
+    \item un(1) Project Manager, che si occuperà  di gestire il team e prendere decisioni sulla progettazione e lo sviluppo e di gestire il versionamento del codice sorgente;
+    \item un(1) Backend developer, che si occuperà, insieme al project manager, della scrittura del codice relativo al backend e alla gestione dei database;
+    \item un(1) Frontend developer, che si occuperà della scrittura del codice relativo al Frontend dell'applicazione e la gestione delle richieste HTTP.
+\end{itemize}
+
+\subsection{Fasi di sviluppo}
+Il lavoro è stato diviso in  parti principali, ognuna composta da molti step, così da favorire una gestione incrementale e continua delle funzionalità. Le fasi sono:
+
+\begin{itemize}
+    \item progettazione, che comprende la decisione sulla struttura del database, dei docker, delle api e delle pagine web
+    \item scrittura del docker compose e creazione del codice di inizializzazione del database
+    \item scrittura codice del login con integrazione delle parti, sia lato frontend che backend
+    \item scrittura codice per l'utente base (Docente o Ricercatore) sia lato frontend che backend
+    \item scrittura codice per Amministrativi e Direttori
+    \item scrittura codice per Jolly, che comprende l'inclusione di tutte le funzionalità e l'aggiunta di altre
+\end{itemize}
+
+Al termine di ogni fase verrà eseguita una fase di testing del relativo modulo, che permette di controllare se tutte le funzionalità create operino correttamente. Inoltre verrà effettuata una revisione degli obiettivi al fine di verificare che tutto sia stato svolto correttamente e, in caso contrario, operare per la correzione.
+
+\subsection{Diagramma di Gantt}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{uniGEST_gantt.png}
+    \caption{Diagramma di Gantt}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Versionamento}
+
+Per gestire il versionamento del codice è stato usato GitHub, che permette di lavorare in modo organizzato attraverso l'uso dei branch, così da evitare conflitti e mantenere stabile la versione principale del progetto.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diagramma_branch.png}
+    \caption{Branching del progetto}
+    \label{fig:enter-label}
+\end{figure}
+
+\section{Design pattern}
+
+\subsection{Model-View-Presenter (MVP)}
+
+Il design patter MVP è stato utilizzato nello sviluppo dell'applicazione, in particolare:
+\begin{itemize}
+    \item Model: gestisce l'accesso diretto al database, occupandosi delle operazioni di recupero, inserimento e modifica dei dati;
+    \item View: rappresentato dalle pagine HTML e javascript del servizio;
+    \item Presenter: composto dai Gateway, responsabili della logica di business specifica per ogni funzionalità.
+\end{itemize}
+
+\subsection{Front Controller}
+Il pattern Front Controller prevede un unico punto di ingresso per la gestione centralizzata delle richieste, favorendo un'organizzazione più coerente del flusso applicativo.\\
+Nel progetto, il file index.php svolge questo ruolo nel backend: intercetta tutte le richieste in ingresso e delega il loro smistamento a Controller.php, che "spacchetta" l'url ricevuto e smista le richieste ai Gateway responsabili delle singole funzionalità. Questa struttura facilita la gestione del routing, centralizza la logica di controllo e rende l'applicazione più manutenibile ed estensibile.\\
+Allo stesso modo, nel frontend, index.html funge da punto di accesso unico e poi, tramite le informazioni sul ruolo e l'identità di chi fa l'accesso (ricevuto dal backend), carica la pagina e i dati corrispondenti.
+\subsection{Strategy}
+Il pattern Strategy, seppur in minima parte, è stato implementato per la gestione dei getPratiche per le varie tipologie di utente.\\E' stato realizzato all'interno della classe Pratica.php nella quale sono state realizzate funzioni differenti con lo stesso scopo, ovvero la restituzione dei dati delle pratiche create; queste sono state poi incapsulate all'interno delle classi di Utente, Amministrativo, Direttore e Jolly all'interno di funzioni apposite.
+\section{Database}
+
+\subsection{Struttura del database}
+\begin{itemize}
+    \item \textbf{Utente:  Id}, Nome, Mail, Pwd, DataCreazione, Jolly  
+    \item \textbf{Docente:  IdDocente*}, Corso
+    \item \textbf{Ricercatore:  IdRicercatore*}, Ricerca
+    \item \textbf{Amministrativo:  IdAmministrativo*}, IdUnità*, Direttore
+    \item \textbf{UOperativa:  IdUnita}, Nome
+    \item \textbf{Assegnazione:  IdAmministrativo*, IdPassaggio*}
+    \item \textbf{Passaggio:  IdPassaggio}, NPassaggio, IdPratica*, IdUnita*, ListDocUscita, ListDocRichiesti, Terminato 
+    \item \textbf{Pratica:  IdPratica}, IdDocente*, Tipologia*, Descrizione, DataCreazione, Codice
+    \item \textbf{Tipologia: Tipologia}, NPassaggi, Passaggi, Inizio
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Schema ER.png}
+    \caption{Schema ER}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Codice del Database}
+\begin{verbatim}
+CREATE DATABASE IF NOT EXISTS unigest;
+use unigest;
+
+CREATE TABLE IF NOT EXISTS Utente(
+    Id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Nome varchar(255) not null,
+    Mail varchar(255) not null,
+    Pwd varchar(255) not null,
+    DataCreazione datetime NOT NULL DEFAULT current_timestamp(),
+    #tipe?
+    Jolly boolean DEFAULT 0,
+    UNIQUE(Mail, DataCreazione)
+);
+
+CREATE TABLE IF NOT EXISTS Docente(
+    IdDocente int(5) NOT NULL PRIMARY KEY,
+    Corso varchar(255) NOT NULL,
+    FOREIGN KEY (IdDocente) REFERENCES Utente(Id) 
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Ricercatore(
+    IdRicercatore int(5) NOT NULL PRIMARY KEY,
+    Ricerca varchar(255) NOT NULL,
+    FOREIGN KEY (IdRicercatore) REFERENCES Utente(Id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS UOperativa(
+    IdUnita int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Nome Text(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Amministrativo(
+    IdAmministrativo int(5) NOT NULL PRIMARY KEY,
+    IdUnita int(5) NOT NULL,
+    Direttore boolean DEFAULT 0,
+    FOREIGN KEY (IdAmministrativo) REFERENCES Utente(Id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (idUnita) REFERENCES UOperativa(IdUnita) 
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Tipologia(
+    Tipologia VARCHAR(255) NOT NULL PRIMARY KEY,
+    NPassaggi int(2) NOT NULL,
+    Passaggi JSON
+    Inizio VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Pratica(
+    IdPratica int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    IdDocente int(5) NOT NULL,
+    Descrizione Text(65535) NOT NULL,
+    Tipologia VARCHAR(255) NOT NULL,
+    DataCreazione datetime NOT NULL DEFAULT current_timestamp(),
+    Codice VARCHAR(255) DEFAULT 0,
+    FOREIGN KEY (IdDocente) REFERENCES Utente(Id) 
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (Tipologia) REFERENCES Tipologia(Tipologia) 
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Passaggio(
+    IdPassaggio int(5) AUTO_INCREMENT PRIMARY KEY,
+    NPassaggio int(3) DEFAULT 1,
+    IdPratica int(5),
+    IdUnita int(5),
+    ListDocUscita Text(65535) NOT NULL,
+    ListDocRichiesti Text(65535) NOT NULL,
+    Terminato boolean DEFAULT 0,
+    FOREIGN KEY (IdPratica) REFERENCES Pratica(IdPratica) 
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (IdUnita) REFERENCES UOperativa(IdUnita) 
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Assegnazione(
+    IdAmministrativo int(5) NOT NULL,
+    IdPassaggio int(5) NOT NULL,
+    PRIMARY KEY (IdAmministrativo, IdPassaggio),
+    FOREIGN KEY (IdAmministrativo) REFERENCES Amministrativo(IdAmministrativo) 
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (IdPassaggio) REFERENCES Passaggio(IdPassaggio) 
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+\end{verbatim}
+\section{Diagrammi UML}
+\subsection{Diagramma delle classi}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diagramma_Classi.png}
+    \caption{Diagramma delle classi}
+    \label{fig:enter-label}
+\end{figure}
+\subsection{Casi d'uso}
+\subsubsection{Glossario di progetto}
+\begin{itemize}
+    \item \textbf{JWT}: JSON Web Token, è un token in formato compatto usato per scambiare informazioni in modo sicuro tra client e server. Contiene un header, un payload con i dati (durata del token, email, tempo di creazione, tipologia di utente e un valore che indica se è jolly) e una firma per garantirne l'integrità;
+    \item \textbf{Tipologia}: cosa può fare un utente all'interno della piattaforma (suddiviso in docente/ricercatore, amministrativo, direttore e jolly);
+    \item \textbf{Utente}: una qualsiasi persona che possiede delle credenziali per accedere alla piattaforma;
+    \item \textbf{Credenziali}: un insieme di email e password collegate ad un utente;
+    \item \textbf{Dashboard}: la pagina principale, che contiene una lista con tutte le pratiche o passaggi relative ad un determinato utente.
+\end{itemize}
+
+\subsubsection{Attori coinvolti}
+\begin{itemize}
+    \item Docenti e Ricercatori: hanno la necessità di utilizzare il sistema per aprire delle pratiche universitarie;
+    \item Amministrativi: gestiscono le pratiche aperte dai professori relative alla propria unità operativa;
+    \item Direttori: assegnano gli amministrativi della propria unità operativa alle pratiche ancora da gestire;
+    \item Jolly: sono utenti che possono fare tutto quello che fanno gli altri utenti e, in più, possono eliminare delle pratiche ancora in corso o terminarle anticipatamente.
+\end{itemize}
+
+\subsubsection{Elenco dei casi d'uso}
+\begin{enumerate}
+    \item Login 
+    \begin{itemize}
+        \item Descrizione: gli utenti devono accedere alla piattaforma utilizzando credenziali private;
+        \item Attori: Tutti
+        \item Precondizioni: Gli utenti hanno delle credenziali valide
+        \item Flusso principale: 
+            \begin{itemize}
+                \item L'utente apre la pagina di login;
+                \item L'utente inserisce email e password;
+                \item Il sistema controlla la correttezza delle credenziali 
+                \item Se le credenziali sono corretti viene generato un token JWT associato all'utente e alla sessione in corso, che viene salvato nel local storage e verrà utilizzato per l'autenticazione delle successive richieste.
+            \end{itemize}
+        \item Flusso alternativo: 
+        \begin{itemize}
+            \item Se le credenziali sono errate viene generato un errore.
+        \end{itemize}
+        \item Postcondizioni: L'utente ha accesso alla piattaforma e può effettuare delle richieste.
+    \end{itemize}
+
+    \item Visualizzazione delle pratiche in corso
+    \begin{itemize}
+        \item Descrizione: L'utente registrato può visualizzare le pratiche relative a: \begin{itemize}
+            \item Sé stesso se è un docente;
+            \item Tutte le pratiche che gli sono state assegnate se è un amministrativo;
+            \item Tutte le pratiche relative alla sua unità operativa se è un direttore;
+            \item Tutte le pratiche in corso se è un jolly.
+        \end{itemize}
+        \item Attori: Tutti.
+        \item Precondizioni: L'utente ha un JWT valido.
+        \item Flusso principale: \begin{itemize}
+            \item L'utente accede alla piattaforma.
+        \end{itemize}
+        \item Flusso alternativo: \begin{itemize}
+            \item L'utente, se non ha un JWT valido, viene reindirizzato alla pagina di login.
+        \end{itemize}
+        \item Postcondizioni: L'utente ha visualizzato le pratiche e può gestirle come preferisce. 
+    \end{itemize}
+
+    \item Creazione di una nuova pratica
+    \begin{itemize}
+        \item Descrizione: L'utente crea una nuova pratica inserendone la tipologia e una descrizione.
+        \item Attori: Docenti, Ricercatori e Jolly.
+        \item Precondizioni: L'utente ha un JWT valido.
+        \item Flusso principale: \begin{itemize}
+            \item L'utente clicca sulla relativa icona nella navbar laterale;
+            \item L'utente inserisce tipologia e descrizione della pratica;
+            \item L'utente preme il pulsante "Invia".
+        \end{itemize}
+        \item Flusso alternativo: \begin{itemize}
+            \item Se la descrizione è vuota viene ritornato un errore.
+        \end{itemize}
+        \item Postcondizioni: L'utente avrà creato una nuova pratica, che dovrà essere gestita da un amministrativo.
+    \end{itemize}
+
+    \item Caricamento file
+    \begin{itemize}
+        \item Descrizione: Uno o più file relativi ad una pratica vengono caricati sulla piattaforma.
+        \item Attori: Amministrativi e Jolly
+        \item Precondizioni: L'utente ha un JWT valido. Se è un amministrativo, la pratica deve essergli stata assegnata.
+        \item Flusso principale: \begin{itemize}
+            \item L'utente clicca sul pulsante "Visualizza";
+            \item L'utente si trova nella schermata di gestione della pratica e clicca sulla sezione relativa al caricamento dei file;
+            \item L'utente seleziona dalla finestra che si è aperta tutti i file che vuole caricare;
+            \item L'utente clicca il pulsante "OK".
+            \item Se tra i file caricati ci sono anche i file necessari per questo passaggio, il passaggio viene considerato completato.
+            \item Si torna alla dashboard.
+        \end{itemize}
+        \item Flusso alternativo: \begin{itemize}
+            \item Se l'utente non ha caricato i file nominati correttamente, il passaggio non termina. 
+        \end{itemize}
+        \item Postcondizioni: Il passaggio è stato completato correttamente e, se tutti i passaggi della pratica sono stati completati correttamente, la pratica viene considerata terminata.
+    \end{itemize}
+
+    \item Assegnazione della pratica 
+    \begin{itemize}
+        \item Descrizione: Uno o più amministrativi vengono assegnati alla gestione di una pratica.
+        \item Attori: Direttore e Jolly.
+        \item Precondizioni: L'utente deve avere un JWT valido. Se l'utente è un direttore, la pratica da assegnare deve essere relativa all'unità operativa di cui è direttore.
+        \item Flusso principale: \begin{itemize}
+            \item L'utente clicca sul tasto "Visualizza";
+            \item L'utente, ora nella pagina di gestione della pratica, clicca tutti gli amministrativi che vuole assegnare a questa pratica nella relativa sezione;
+            \item L'utente clicca il tasto "Conferma".
+        \end{itemize}
+        \item Flusso alternativo: Se non è stato selezionato nessun amministrativo viene ritornato un errore.
+        \item Postcondizioni: Uno o più amministrativi vengono assegnati alla gestione di una pratica.
+    \end{itemize}
+
+    \item Elimina pratica 
+    \begin{itemize}
+        \item Descrizione: Una pratica ancora in corso viene eliminata.
+        \item Attori: Jolly.
+        \item Precondizioni: L'utente ha un JWT valido. La pratica è ancora in corso. 
+        \item Flusso principale: \begin{itemize}
+            \item L'utente clicca sul pulsante "Visualizza" della pratica da gestire. 
+            \item L'utente clicca il pulsante "Elimina pratica" in alto a destra. 
+            \item Nel riquadro di conferma, l'utente clicca il pulsante "Conferma".
+        \end{itemize}
+        \item Flusso alternativo: Se l'utente clicca il pulsante "Annulla", la pratica non viene eliminata.
+        \item Postcondizioni: La pratica e tutti i suoi passaggi vengono cancellati dal database.
+    \end{itemize}
+
+    \item Termina pratica 
+    \begin{itemize}
+        \item Descrizione: Una pratica viene terminata in modo forzato.
+        \item Attori: Jolly.
+        \item Precondizioni: L'utente ha un JWT valido. La pratica è in corso(non ancora terminata).
+        \item Flusso principale: \begin{itemize}
+            \item L'utente clicca il pulsante "Visualizza" della pratica da gestire.
+            \item L'utente clicca il pulsante "Termina pratica".
+            \item L'utente inserisce il codice della causa di terminazione
+            \item L'utente clicca il pulsante "Conferma".
+            \item Il sistema termina questa pratica anche se non sono stati caricati tutti i documenti richiesti.
+        \end{itemize}
+        \item Flusso alternativo: Se l'utente clicca il pulsante "Annulla", la pratica non viene terminata.
+        \item Postcondizioni: La pratica viene terminata e il sistema aggiorna il database di conseguenza.
+    \end{itemize}
+    \item Logout
+    \begin{itemize}
+        \item Descrizione: L'utente chiude la sessione attiva.
+        \item Attori: Tutti.
+        \item Precondizioni: L'utente ha un JWT valido.
+        \item Flusso principale: \begin{itemize}
+            \item L'utente clicca l'icona con la porta.
+            \item Il JWT viene cancellato dalla memoria del browser.
+            \item L'utente viene spostato alla pagina di login.
+        \end{itemize}
+        \item Flusso alternativo: No.
+        \item Postcondizioni: L'utente non può più accedere alla piattaforma se non effettua nuovamente il login.
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Diagramma dei casi d'uso}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diagramma_use_case_completo.png}
+    \caption{Diagramma dei casi d'uso}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Matrice di tracciabilità}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Screenshot 2025-07-01 171511.png}
+    \caption{Matrice di tracciabilità}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Diagrammi di stato}
+
+\subsubsection{Pratica}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diag_stato_pratica.png}
+    \caption{Diagramma degli stati di una pratica}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Passaggio}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Diag_stato_passaggio.png}
+    \caption{Diagramma degli stati di un passaggio}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Utente}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diag_stato_utente.png}
+    \caption{Diagramma degli stati di un utente}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Documenti}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diag_stato_Doc.png}
+    \caption{Diagramma degli stati di un documento}
+    \label{fig:enter-label}
+\end{figure}
+
+
+\subsection{Diagrammi di sequenza}
+
+\subsubsection{Creazione delle pratiche}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{diag_sequenza_add.png}
+    \caption{Diagramma di creazione delle pratiche}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Caricamento file}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{diag_sequenza_carica.png}
+    \caption{Diagramma del caricamento dei file}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Assegnamento degli amministrativi}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{diag_sequenza_assegnazione.png}
+    \caption{Diagramma dell'assegnamento degli amministrativi con direttore}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Assegnamento degli amministrativi}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{diag_sequenza_assegnazionejolly.png}
+    \caption{Diagramma dell'assegnamento dei passaggi  con Jolly}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Diagrammi delle attività}
+
+\subsubsection{Apertura di una pratica}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{diag_attivita_apertura.png}
+    \caption{Diagramma delle attività dell'apertura di una pratica}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Visualizzazione passaggio}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{diag_attivita_visualizzazione.png}
+    \caption{Diagramma delle attività della visualizzazione dei dati di un passaggio}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Assegnazione di un passaggio}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{diag_attivita_assegnazione.png}
+    \caption{Diagramma delle attività dell'assegnazione di un passaggio}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Caricamento dei documenti}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{diag_attivita_add.png}
+    \caption{Diagramma delle attività del caricamento di un documento}
+    \label{fig:enter-label}
+\end{figure}
+\subsubsection{Terminazione forzata della pratica}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{diag_attivita_terminazione.png}
+    \caption{Diagramma delle attività per la terminazione forzata della pratica}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Diagramma delle partizioni}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diagramma_Partizioni.png}
+    \caption{Diagramma delle partizioni}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Diagrammi delle comunicazioni}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diag_comunicazione_login.png}
+    \caption{Diagramma di comunicazione dell'API login}
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diag_comunicazione_dashboard.png}
+    \caption{Diagramma di comunicazione dell'API home}
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diag_comunicazione_create.png}
+    \caption{Diagramma di comunicazione dell'API create}
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diag_comunicazione_add.png}
+    \caption{Diagramma di comunicazione dell'API add}
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diag_comunicazione_assegna.png}
+    \caption{Diagramma di comunicazione dell'API assegna}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{Diag_comunicazione_download.png}
+    \caption{Diagramma di comunicazione dell'API getFile}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diag_comunicazione_tipologie.png}
+    \caption{Diagramma di comunicazione dell'API tipologie}
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diag_comunicazione_delete.png}
+    \caption{Diagramma di comunicazione dell'API delete}
+    \label{fig:enter-label}
+\end{figure}
+\section{Diagramma dei componenti}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diagramma_componenti.png}
+    \caption{Diagramma dei componenti}
+    \label{fig:enter-label}
+\end{figure}
+
+\section{Diagramma di distribuzione}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diagramma_distribuzione.png}
+    \caption{Diagramma di distribuzione}
+    \label{fig:enter-label}
+\end{figure}
+
+\section{Dettagli dell'implementazione}
+\subsection{Frontend}
+\subsubsection{Librerie e strumenti}
+
+Per la realizzazione del frontend sono stati utilizzati i seguenti strumenti:
+\begin{itemize}
+    \item HTML5 e CSS3: usati per la struttura di base e per il design delle pagine;
+    \item JavaScript: utilizzato per mostrare i contenuti dinamici nelle pagine;
+    \item JQuery: utilizzato per la comunicazione con il backend tramite le chiamate AJAX;
+    \item Bootstrap 5.3: utilizzato per velocizzare la realizzazione dell'interfaccia tramite contenuti già pronti.
+\end{itemize}
+
+\subsubsection{Struttura file e cartelle frontend}
+\begin{verbatim}
+frontend\
+|-- assets\
+|     |-- img\
+|           |-- sfondoLogin.jpg
+|-- css\
+|     |-- admin.css
+|     |-- chief.css
+|     |-- jolly.css
+|     |-- navbar.css
+|     |-- nuovaPratica.css
+|     |-- panel.css
+|-- js\
+|     |-- loader.js
+|     |-- navbar.js
+|     |-- praticheAdmin.js
+|     |-- praticheChief.js
+|     |-- praticheJolly.js
+|     |-- praticheUser.js
+|     |-- token.js
+|     |-- utils.js
+|-- user\
+|     |-- nuovaPratica.html
+|-- .htaccess
+|-- admin.html
+|-- chief.html
+|-- index.html
+|-- jolly.html
+|-- user.html
+|-- favicon.ico
+
+\end{verbatim}
+In particolare:
+\begin{itemize}
+    \item .htaccess ha il compito di reindirizzare tutte le richieste di pagine non esistenti alla pagina di login (index.html) e di impedire l'accesso a tutti i file che iniziano con un punto;
+    \item il file index.html è il file di login e ad esso vengono reindirizzate tutte le richieste di utenti non autenticati o fatte a pagine non esistenti;
+    \item user.html, admin.html, chief.html e jolly.html sono le pagine relative rispettivamente a docenti/ricercatori, amministrativi, direttori e jolly; 
+    \item nuovaPratica.html è la pagina in cui si creano nuove pratiche
+    \item token.js contiene tutte le funzioni JS relative alla gestione dei token da parte del frontend;
+    \item utils.js contiene funzioni utilizzate in tutte le pagine dell'applicazione;
+    \item loader.js contiene le funzioni associate alla creazione delle pratiche;
+    \item la cartella assets conterrà tutti i file di supporto, come ad esempio le immagini;
+\end{itemize}
+
+\subsection{Backend}
+\subsubsection{Librerie e strumenti}
+Le librerie e gli strumenti forniti per l'utilizzo e la realizzazione delle principali funzionalità del backend sono:
+\begin{itemize}
+    \item \textbf{PHP}: Utilizzato per realizzare la logica del backend, utilizzando il patern MVP.
+    \item \textbf{MySQL}: utilizzato per il salvataggio dati sul server.
+    \item \textbf{JWT}: utilizzato per la realizzazione di token utilizzabili per le sessioni utente e l'autentiazione prima di effettuare le operazioni CRUD.
+\end{itemize}
+\subsubsection{Struttura file e cartelle backend}
+\begin{verbatim}
+backend/
+|-- documenti/
+|-- Imports/
+|   |-- Class/
+|   |   |-- Amministrativo.php
+|   |   |-- Direttore.php
+|   |   |-- Jolly.php
+|   |   |-- Passaggio.php
+|   |   |-- Pratica.php
+|   |   |-- Tipologia.php
+|   |   -- User.php
+|   -- Interfaces/
+|       |-- AmministrativoInterface.php
+|       |-- DirettoreInterface.php
+|       |-- DocInterface.php
+|       |-- DownloadInterface.php
+|       |-- JollyInterface.php
+|       |-- PassaggioInterface.php
+|       |-- PraticaInterface.php
+|       |-- TipologiaInterface.php
+|       -- UserInterface.php
+|-- ControllerJwt.php
+|-- Database.php
+|-- DocumentHandler.php
+|-- Download.php
+|-- .htaccess
+|-- Controller.php
+|-- Gateway.php
+|-- index.php
+|-- PraticheGateway.php
+|-- UserGateway.php
+\end{verbatim}
+
+\begin{itemize}
+    \item \textbf{.htaccess}\\
+    Mi imposta index.php alla prima pagina raggiungibile dalle chiamate al server.
+\item\textbf{Index.php}\\
+Punto d'accesso al backend, smista le richieste al Controller.
+\item\textbf{Controller.php}\\
+Opera come punto per lo smistamento delle richieste verso i gateway corretti, quali UserGatewat e PraticheGateway.
+\item\textbf{Gateway.php}\\
+Classe astratta usata come base per la generazione delle singole classi di gateway che implementano il metodo handle\_request. In particolare il gateway Usergateway.php è impostato per la realizzazione del token da restituire per le richieste di login; mentre PraticheGateway.php si occupa della gestione delle operazioni quali  creazione, assegnazione, eliminazione dei passaggi e delle pratiche e il caricamento dei file.
+\item\textbf{Database}\\
+Contiene le funzioni per inviare richieste al database e gestire le transaction.
+\item\textbf{ControllerJWT}\\
+La classe serve per realizzare e controllare il token d'accesso al servizio.
+\item \textbf{DocumentHandler}\\
+La classe serve per effettuare tutte le singole operazioni sul filesystem e il check dei file caricati tramite la tabella del database per richiamare, in caso di necessita', la funzione di terminazione del passaggio/pratica.
+\item \textbf{Download}\\
+Classe che permette, tramite una richiesta get fatta dall'amministrativo o jolly, di scaricare i file caricati per verificare che i file inseriti siano corretti.
+\end{itemize}
+\subsubsection{Autenticazione}
+L'autenticazione viene effettuata tramite il controllo del JWT salvato nell'header della richiesta JSON. Contiene informazioni riguardanti il tempo di creazione del token, la tipologia dell'utente, un valore numerico (1 o 0) per indicare se l'utente è jolly, il nome dell'utente, il suo id nel database e infine il tempo di scadenza del token (posto a 1 ora). Per eseguire qualsiasi operazione all'interno del servizio l'utente vara bisogno prima di tutto di verificare la sua identità; una volta fatto ciò il token sarà utilizzato per verificare l'utenza e anche verificare che il token non sia stato alterato durante l'invio o nel frontend.
+\subsubsection{Caricamento documenti}
+Alla creazione della pratica viene effettuata una transaction la quale termina solamente se a livello di database siano stati creati anche i vari passaggi della pratica e se a livello di filesystem siano state create le cartelle della pratica e dei passaggi; se questi due eventi sono terminati con successo allora esegue il commit della transaction, altrimenti il rollback.
+Si previene anche il caso in cui i file caricati non siano corretti o siano già stati inseriti.
+\section{Testing}
+Il testing è stato effettuato al termine e durante ogni attività di produzione di codice delle operazioni CRUD. In particolare sono stati effettuati test al termine della produzione del backend per la parte del login tramite l'uso di \textbf{postman}.\\
+Successivamente è stata fatta l'integrazione tra frontend e backend del solo login e in seguito \textbf{testata manualmente}. Continuando è stato prodotto il codice per l'utente base sia a livello di frontend che a livello di backend, dopodiché è stato testato prima il backend, sempre tramite \textbf{postman}, in seguito è stata fatta l'unione delle due parti ed è stata anch'essa testata; così è stato fatto anche per la parte relativa alle operazioni dell'amministrativo, del direttore e infine del jolly.\\
+È anche stato tentato il testing automatico tramite PHPunit, il quale è stato utile per verificare la corretta restituzione delle pratiche e dei passaggi; ha però causato problemi nella creazione delle cartelle, durante il testing della creazione delle pratiche; poiché PHPUnit utilizza l'utente root per la creazione delle cartelle, mentre il codice php del backend utilizza lo user \texttt{www-data}.
+Il caricamento dei file, così come la terminazione di un passaggio e della pratica, sono stati verificati tramite l'inserimento manuale di file; si è verificato tramite quell'operazione anche la chiusura automatica di più passaggi purché siano presenti i file indicati nella lista dei documenti d'uscita.
+
+\section{Avvio}
+Per avviare il progetto è sufficiente avviare docker desktop ed eseguire il comando \\\textbf{docker-compose up -d} \\di suo scaricherà le immagini richieste con anche i moduli necessari.\\
+All'avvio nel database saranno già presenti degli utenti con i quali si potrà accedere ai servizi; questo è stato fatto, senza pagina di creazione dell'utente, per simulare una finta connessione a database contenenti già gli utenti; poiché si è pensato che, essendo un servizio universitario, questo sarà connesso a server dell'università. 
+\end{document}

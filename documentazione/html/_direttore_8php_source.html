@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Unigest:  File sorgente INGSW-2425-T9-A/backend/Imports/Class/Direttore.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Unigest
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_direttore_8php_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Caricamento in corso...</div>
+<div class="SRStatus" id="Searching">Ricerca in corso...</div>
+<div class="SRStatus" id="NoMatches">Nessun risultato</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Direttore.php</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_direttore_8php.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span>&lt;?php</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span>require_once __DIR__ . <span class="stringliteral">&quot;/../Database.php&quot;</span>;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span>require_once __DIR__ . <span class="stringliteral">&quot;/Amministrativo.php&quot;</span>;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>require_once __DIR__ . <span class="stringliteral">&quot;/../DocumentHandler.php&quot;</span>;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>require_once __DIR__ . <span class="stringliteral">&quot;/../Interfaces/DirettoreInterface.php&quot;</span>;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_direttore.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="class_direttore.html">Direttore</a> <span class="keyword">extends</span> <a class="code hl_class" href="class_amministrativo.html">Amministrativo</a> implements DirettoreInterface</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">private</span> $Direttore;</div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_direttore.html#a68ef4e0895bde6296636260ebc34bc33">   29</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="class_direttore.html#a68ef4e0895bde6296636260ebc34bc33">__construct</a>($Id)</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        parent::__construct($Id);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        $this-&gt;<a class="code hl_class" href="class_direttore.html">Direttore</a> = 1;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_direttore.html#a74d449584c3288a3c3cca7adc619dff5">   35</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="class_direttore.html#a74d449584c3288a3c3cca7adc619dff5">getDirettore</a>()</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">return</span> $this-&gt;Direttore;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
+</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="class_direttore.html#ad1edf9b9d3c51e14e1e1f7d97359d346">   46</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="class_direttore.html#ad1edf9b9d3c51e14e1e1f7d97359d346">getPraticheDirettore</a>()</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="class_pratica.html#aded3073a82af155bb3f5825c83bc4abb">Pratica::getPraticheDirettore</a>($this-&gt;<a class="code hl_function" href="class_amministrativo.html#a9ee828779d230875ac58a85e589322dd">getIdUnita</a>());</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
+</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="class_direttore.html#a0278ecf491436bcefaf248d361547f62">   64</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> <a class="code hl_function" href="class_direttore.html#a0278ecf491436bcefaf248d361547f62">Assegnazione</a>($IdPassaggio, $IdAmministrativo)</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        $dbconn = <span class="keyword">new</span> <a class="code hl_class" href="class_database.html">Database</a>();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        $query = <span class="stringliteral">&quot;INSERT INTO Assegnazione (IdAmministrativo,IdPassaggio)</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="stringliteral">                VALUES(?,?);&quot;</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        $result = $dbconn-&gt;query($query, [$IdAmministrativo, $IdPassaggio]);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordflow">if</span> (!is_null($result)) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            http_response_code(201);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            echo json_encode([<span class="stringliteral">&quot;successo&quot;</span> =&gt; <span class="stringliteral">&quot;Assegnazione avvenuta con successo&quot;</span>]);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            http_response_code(400);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            echo json_encode([<span class="stringliteral">&quot;fallito&quot;</span> =&gt; <span class="stringliteral">&quot;Assegnazione fallita&quot;</span>]);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        $dbconn-&gt;close();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
+</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="foldopen" id="foldopen00095" data-start="{" data-end="}">
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="class_direttore.html#ac2ace781da58bb17b846d7d0d93f376c">   95</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="class_direttore.html#ac2ace781da58bb17b846d7d0d93f376c">getAmministrativi</a>()</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        $dbconn = <span class="keyword">new</span> <a class="code hl_class" href="class_database.html">Database</a>();</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            $query = <span class="stringliteral">&quot;SELECT Utente.Mail</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="stringliteral">                    FROM Utente LEFT JOIN Amministrativo ON Utente.Id=Amministrativo.IdAmministrativo</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="stringliteral">                    WHERE Amministrativo.IdUnita=? AND Amministrativo.Direttore=0&quot;</span>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            $result = $dbconn-&gt;query($query, [parent::getIdUnita()]);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            <span class="keywordflow">while</span> ($row = $result-&gt;fetch_assoc()) {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                $rows[] = $row;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>            }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            <span class="keywordflow">if</span> ($rows != <span class="keyword">null</span>) {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                http_response_code(201);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                echo json_encode($rows);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                http_response_code(400);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                echo json_encode([<span class="stringliteral">&quot;fallito&quot;</span> =&gt; <span class="stringliteral">&quot;Vuoto&quot;</span>]);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        } <span class="keywordflow">catch</span> (Exception $e) {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            http_response_code(400);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            echo json_encode([<span class="stringliteral">&quot;Error: &quot;</span> =&gt; $e-&gt;getMessage()]);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        $dbconn-&gt;close();</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
+</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span></div>
+<div class="foldopen" id="foldopen00136" data-start="{" data-end="}">
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="class_direttore.html#aee005c9b51648d4191021b11ba5c8e53">  136</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="class_direttore.html#aee005c9b51648d4191021b11ba5c8e53">getAmministrativiAssegnati</a>($IdPratica, $NPassaggio)</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        $dbconn = <span class="keyword">new</span> <a class="code hl_class" href="class_database.html">Database</a>();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            $query = <span class="stringliteral">&quot;SELECT Utente.Mail</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="stringliteral">                    FROM Utente</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="stringliteral">                    JOIN Amministrativo ON Utente.Id = Amministrativo.IdAmministrativo</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="stringliteral">                    JOIN Assegnazione ON Amministrativo.IdAmministrativo = Assegnazione.IdAmministrativo</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="stringliteral">                    JOIN Passaggio ON Assegnazione.IdPassaggio = Passaggio.IdPassaggio</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="stringliteral">                    WHERE Passaggio.IdPratica = ? AND Passaggio.NPassaggio = ?&quot;</span>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            $result = $dbconn-&gt;query($query, [$IdPratica, $NPassaggio]);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            $rows = [];</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>            <span class="keywordflow">while</span> ($row = $result-&gt;fetch_assoc()) {</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                $rows[] = $row;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>            <span class="keywordflow">if</span> ($rows != <span class="keyword">null</span>) {</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                http_response_code(201);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                echo json_encode($rows);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                http_response_code(400);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                echo json_encode([<span class="stringliteral">&quot;fallito&quot;</span> =&gt; <span class="stringliteral">&quot;Vuoto&quot;</span>]);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            }</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        } <span class="keywordflow">catch</span> (Exception $e) {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>            http_response_code(400);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>            echo json_encode([<span class="stringliteral">&quot;Error: &quot;</span> =&gt; $e-&gt;getMessage()]);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        $dbconn-&gt;close();</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    }</div>
+</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>}</div>
+</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>?&gt;</div>
+<div class="ttc" id="aclass_amministrativo_html"><div class="ttname"><a href="class_amministrativo.html">Amministrativo</a></div><div class="ttdef"><b>Definition</b> <a href="_amministrativo_8php_source.html#l00015">Amministrativo.php:15</a></div></div>
+<div class="ttc" id="aclass_amministrativo_html_a9ee828779d230875ac58a85e589322dd"><div class="ttname"><a href="class_amministrativo.html#a9ee828779d230875ac58a85e589322dd">Amministrativo\getIdUnita</a></div><div class="ttdeci">getIdUnita()</div><div class="ttdef"><b>Definition</b> <a href="_amministrativo_8php_source.html#l00036">Amministrativo.php:36</a></div></div>
+<div class="ttc" id="aclass_database_html"><div class="ttname"><a href="class_database.html">Database</a></div><div class="ttdef"><b>Definition</b> <a href="_database_8php_source.html#l00014">Database.php:15</a></div></div>
+<div class="ttc" id="aclass_direttore_html"><div class="ttname"><a href="class_direttore.html">Direttore</a></div><div class="ttdef"><b>Definition</b> <a href="#l00018">Direttore.php:19</a></div></div>
+<div class="ttc" id="aclass_direttore_html_a0278ecf491436bcefaf248d361547f62"><div class="ttname"><a href="class_direttore.html#a0278ecf491436bcefaf248d361547f62">Direttore\Assegnazione</a></div><div class="ttdeci">static Assegnazione($IdPassaggio, $IdAmministrativo)</div><div class="ttdef"><b>Definition</b> <a href="#l00064">Direttore.php:64</a></div></div>
+<div class="ttc" id="aclass_direttore_html_a68ef4e0895bde6296636260ebc34bc33"><div class="ttname"><a href="class_direttore.html#a68ef4e0895bde6296636260ebc34bc33">Direttore\__construct</a></div><div class="ttdeci">__construct($Id)</div><div class="ttdef"><b>Definition</b> <a href="#l00029">Direttore.php:29</a></div></div>
+<div class="ttc" id="aclass_direttore_html_a74d449584c3288a3c3cca7adc619dff5"><div class="ttname"><a href="class_direttore.html#a74d449584c3288a3c3cca7adc619dff5">Direttore\getDirettore</a></div><div class="ttdeci">getDirettore()</div><div class="ttdef"><b>Definition</b> <a href="#l00035">Direttore.php:35</a></div></div>
+<div class="ttc" id="aclass_direttore_html_ac2ace781da58bb17b846d7d0d93f376c"><div class="ttname"><a href="class_direttore.html#ac2ace781da58bb17b846d7d0d93f376c">Direttore\getAmministrativi</a></div><div class="ttdeci">getAmministrativi()</div><div class="ttdef"><b>Definition</b> <a href="#l00095">Direttore.php:95</a></div></div>
+<div class="ttc" id="aclass_direttore_html_ad1edf9b9d3c51e14e1e1f7d97359d346"><div class="ttname"><a href="class_direttore.html#ad1edf9b9d3c51e14e1e1f7d97359d346">Direttore\getPraticheDirettore</a></div><div class="ttdeci">getPraticheDirettore()</div><div class="ttdef"><b>Definition</b> <a href="#l00046">Direttore.php:46</a></div></div>
+<div class="ttc" id="aclass_direttore_html_aee005c9b51648d4191021b11ba5c8e53"><div class="ttname"><a href="class_direttore.html#aee005c9b51648d4191021b11ba5c8e53">Direttore\getAmministrativiAssegnati</a></div><div class="ttdeci">getAmministrativiAssegnati($IdPratica, $NPassaggio)</div><div class="ttdef"><b>Definition</b> <a href="#l00136">Direttore.php:136</a></div></div>
+<div class="ttc" id="aclass_pratica_html_aded3073a82af155bb3f5825c83bc4abb"><div class="ttname"><a href="class_pratica.html#aded3073a82af155bb3f5825c83bc4abb">Pratica\getPraticheDirettore</a></div><div class="ttdeci">static getPraticheDirettore($IdUnita)</div><div class="ttdef"><b>Definition</b> <a href="_pratica_8php_source.html#l00135">Pratica.php:135</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_1a56cc0eb01dbc7fe6a5218a6501a5fb.html">INGSW-2425-T9-A</a></li><li class="navelem"><a class="el" href="dir_93dc1c0bb07d9cee4110ed3ef5676c59.html">backend</a></li><li class="navelem"><a class="el" href="dir_0fd7189fd68e7ff595bc78b383a218d1.html">Imports</a></li><li class="navelem"><a class="el" href="dir_bed4eb038e163311df0131b51746e562.html">Class</a></li><li class="navelem"><a class="el" href="_direttore_8php.html">Direttore.php</a></li>
+    <li class="footer">Generato da <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

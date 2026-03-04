@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Unigest:  File sorgente INGSW-2425-T9-A/backend/Imports/Class/Passaggio.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Unigest
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Cerca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_passaggio_8php_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Caricamento in corso...</div>
+<div class="SRStatus" id="Searching">Ricerca in corso...</div>
+<div class="SRStatus" id="NoMatches">Nessun risultato</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Passaggio.php</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_passaggio_8php.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span>&lt;?php</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span>use Dom\Document;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>use PHPUnit\Framework\Constraint\IsEmpty;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>use PHPUnit\Framework\Constraint\IsNull;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>require_once __DIR__ . <span class="stringliteral">&quot;/Pratica.php&quot;</span>;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>require_once __DIR__ . <span class="stringliteral">&quot;/../Interfaces/PassaggioInterface.php&quot;</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="_passaggio_8php.html#ac0b9eb54264cc568412066ad77eab659">   35</a></span>Class <a class="code hl_class" href="class_passaggio.html">Passaggio</a> implements <a class="code hl_variable" href="_passaggio_8php.html#ac0b9eb54264cc568412066ad77eab659">PassaggioInterface</a> {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">private</span> $IdPassaggio;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">private</span> $NPassaggio;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">private</span> $IdPratica;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">private</span> $IdUnita;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">private</span> $ListaDocUscita;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">private</span> $ListaDocRichiesti;</div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="_passaggio_8php.html#ade3eb3de9425009a4500f56389c33daf">   52</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="_passaggio_8php.html#ade3eb3de9425009a4500f56389c33daf">__construct</a>($IdPassaggio, $IdPratica, $NPassaggio, $IdUnita = -1, $ListaDocRichiesti = <span class="stringliteral">&quot;&quot;</span>, $ListaDocUscita = <span class="stringliteral">&quot;&quot;</span>){</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        $this-&gt;IdPassaggio=$IdPassaggio;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        $this-&gt;NPassaggio=$NPassaggio;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        $this-&gt;IdPratica=$IdPratica;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        $this-&gt;IdUnita=$IdUnita;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        $this-&gt;ListaDocRichiesti=$ListaDocRichiesti;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        $this-&gt;ListaDocUscita=$ListaDocUscita;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="_passaggio_8php.html#a9546d35a29e2f1719c47ae7e9293fbb4">   61</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="_passaggio_8php.html#a9546d35a29e2f1719c47ae7e9293fbb4">getIdPassaggio</a>() {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">return</span> $this-&gt;IdPassaggio;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="_passaggio_8php.html#a0952a6d1243b460d0a9d95b03b9d3976">   65</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="_passaggio_8php.html#a0952a6d1243b460d0a9d95b03b9d3976">getNPassaggio</a>() {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> $this-&gt;NPassaggio;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="_passaggio_8php.html#a456f88435369db414ca4fbc37e7a6966">   69</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="_passaggio_8php.html#a456f88435369db414ca4fbc37e7a6966">getIdPratica</a>() {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">return</span> $this-&gt;IdPratica;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="}">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="_passaggio_8php.html#a9ee828779d230875ac58a85e589322dd">   73</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="_passaggio_8php.html#a9ee828779d230875ac58a85e589322dd">getIdUnita</a>() {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">return</span> $this-&gt;IdUnita;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
+</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="_passaggio_8php.html#a143169483440f7f9875af11404a6c29c">   77</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="_passaggio_8php.html#a143169483440f7f9875af11404a6c29c">getListaDocRichiesti</a>() {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">return</span> $this-&gt;ListaDocRichiesti;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="foldopen" id="foldopen00081" data-start="{" data-end="}">
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="_passaggio_8php.html#a6bdd5b22659839f4973b27454b2c9b5e">   81</a></span>    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code hl_function" href="_passaggio_8php.html#a6bdd5b22659839f4973b27454b2c9b5e">getListaDocUscita</a>() {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">return</span> $this-&gt;ListaDocUscita;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> UpdatePratica($IdPratica) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        $dbconn = <span class="keyword">new</span> <a class="code hl_class" href="class_database.html">Database</a>();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        $query=<span class="stringliteral">&quot;UPDATE Pratica</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="stringliteral">                SET Pratica.codice = 1</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="stringliteral">                WHERE Pratica.IdPratica=?;&quot;</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        $result=$dbconn-&gt;query($query,[$IdPratica]);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        $dbconn-&gt;close();</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">return</span> $result;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> Terminazione($Npassaggio,$IdPratica,$IdPassaggio) {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        $result = NULL;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        $NPassaggi = <a class="code hl_function" href="class_pratica.html#abd2f013636af06c5f3ed0ac6e31c989e">Pratica::GetMaxPassaggio</a>($IdPratica);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        $check = <a class="code hl_function" href="class_document_handler.html#aa6134ccaca9d26f61b05c364a3fa3a8d">DocumentHandler::CheckFile</a>( $Npassaggio, $IdPratica,$NPassaggi);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keywordflow">if</span>($check == TRUE){</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            $result = self::UpdatePassaggio((<span class="keywordtype">int</span>)$IdPassaggio,(<span class="keywordtype">int</span>)$IdPratica);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            <span class="keywordflow">if</span>($Npassaggio==$NPassaggi-1) {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                self::UpdatePratica((<span class="keywordtype">int</span>)$IdPratica);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            <span class="keywordflow">if</span>($result != <span class="keyword">null</span> &amp;&amp; $result != 0) {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                http_response_code(202);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                echo json_encode([<span class="stringliteral">&quot;success&quot;</span> =&gt; <span class="stringliteral">&quot;Terminata con successo&quot;</span>]);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                http_response_code(409);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                echo json_encode([<span class="stringliteral">&quot;failed&quot;</span> =&gt; <span class="stringliteral">&quot;Terminata con errore&quot;</span>]);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            }</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> UpdatePassaggio($IdPassaggio,$IdPratica) {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        $dbconn = <span class="keyword">new</span> <a class="code hl_class" href="class_database.html">Database</a>();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        $query=<span class="stringliteral">&quot;UPDATE Passaggio</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="stringliteral">                SET Passaggio.terminato = TRUE</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="stringliteral">                WHERE Passaggio.IdPassaggio=? AND Passaggio.IdPratica=?;&quot;</span>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        $result=$dbconn-&gt;query($query,[$IdPassaggio,$IdPratica]);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        $dbconn-&gt;close();</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="keywordflow">return</span> $result;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    }</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> GetNumPassaggio($pratica,$passaggio) {</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        $dbconn = <span class="keyword">new</span> <a class="code hl_class" href="class_database.html">Database</a>();</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        $query = <span class="stringliteral">&quot;SELECT Passaggio.NPassaggio</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="stringliteral">                    FROM Pratica JOIN PASSAGGIO ON Passaggio.IdPratica = Pratica.IdPratica</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="stringliteral">                    WHERE Pratica.IdPratica= ? AND Passaggio.IdPassaggio = ?&quot;</span>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        <span class="keywordflow">try</span>{</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>            $result = $dbconn-&gt;query($query, [$pratica,$passaggio]);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>            <span class="keywordflow">return</span> $result;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        }</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="keywordflow">catch</span>(Exception $e) {</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>            http_response_code(400);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>            echo json_encode([<span class="stringliteral">&quot;failed&quot;</span> =&gt; <span class="stringliteral">&quot;Errore nella ricerca&quot;</span>]);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>            <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    }</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> GetIdPassaggioFromNum($IdPratica,$NPassaggio) {</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        $dbconn = <span class="keyword">new</span> <a class="code hl_class" href="class_database.html">Database</a>();</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        $query = <span class="stringliteral">&quot;SELECT Passaggio.IdPassaggio</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="stringliteral">                    FROM Passaggio</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="stringliteral">                    WHERE Passaggio.IdPratica= ? AND Passaggio.NPassaggio = ?&quot;</span>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keywordflow">try</span>{</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>            $result = $dbconn-&gt;query($query, [$IdPratica,$NPassaggio]);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>            $IdPassaggio = $result-&gt;fetch_assoc();</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            <span class="keywordflow">return</span> $IdPassaggio[<span class="stringliteral">&quot;IdPassaggio&quot;</span>];</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        }</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        <span class="keywordflow">catch</span>(Exception $e) {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            http_response_code(400);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>            echo json_encode([<span class="stringliteral">&quot;failed&quot;</span> =&gt; <span class="stringliteral">&quot;Errore nella ricerca&quot;</span>]);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>            <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        }</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    }</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> CaricaDocumenti($IdPratica,$NPassaggio) {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        $IdPassaggio = self::GetIdPassaggioFromNum($IdPratica,$NPassaggio);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="class_document_handler.html#a91a5dc99707e7c010d101fe4764f477b">DocumentHandler::AddDocument</a>($IdPratica, $NPassaggio, $IdPassaggio);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    }</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> CaricaDocumentiStart($IdPratica) {</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="class_document_handler.html#ab7355bfa223e418bc8e0626686d390e0">DocumentHandler::AddDocumentStart</a>($IdPratica);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    }</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> GetListDocRichiesti($IdPratica,$NPassaggio) {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        $dbconn = <span class="keyword">new</span> <a class="code hl_class" href="class_database.html">Database</a>();</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        $query = <span class="stringliteral">&quot;SELECT Passaggio.ListDocRichiesti</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="stringliteral">                    FROM Pratica JOIN Passaggio ON Passaggio.IdPratica = Pratica.IdPratica</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="stringliteral">                    WHERE Pratica.IdPratica= ? AND Passaggio.NPassaggio = ?&quot;</span>;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keywordflow">try</span>{</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>            $result = $dbconn-&gt;query($query, [$IdPratica,$NPassaggio]);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>            $dbconn-&gt;close();</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>            $result = $result-&gt;fetch_assoc();</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>            <span class="keywordflow">return</span> $result[<span class="stringliteral">&quot;ListDocRichiesti&quot;</span>];</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        }</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        <span class="keywordflow">catch</span>(Exception $e) {</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>            $dbconn-&gt;close();</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>            http_response_code(400);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>            echo json_encode([<span class="stringliteral">&quot;failed&quot;</span> =&gt; <span class="stringliteral">&quot;Errore nella ricerca&quot;</span>]);</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>            <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>        }</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    }</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> ListDocUscita($IdPratica,$NPassaggio) {</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        $dbconn = <span class="keyword">new</span> <a class="code hl_class" href="class_database.html">Database</a>();</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        $query = <span class="stringliteral">&quot;SELECT Passaggio.ListDocUscita</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="stringliteral">                    FROM Pratica JOIN Passaggio ON Passaggio.IdPratica = Pratica.IdPratica</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="stringliteral">                    WHERE Pratica.IdPratica= ? AND Passaggio.NPassaggio = ?&quot;</span>;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        <span class="keywordflow">try</span>{</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            $result = $dbconn-&gt;query($query, [$IdPratica,$NPassaggio]);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            $dbconn-&gt;close();</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            $result = $result-&gt;fetch_assoc();</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>            <span class="keywordflow">return</span> $result[<span class="stringliteral">&quot;ListDocUscita&quot;</span>];</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        }</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>        <span class="keywordflow">catch</span>(Exception $e) {</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>            $dbconn-&gt;close();</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>            http_response_code(400);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>            echo json_encode([<span class="stringliteral">&quot;failed&quot;</span> =&gt; <span class="stringliteral">&quot;Errore nella ricerca&quot;</span>]);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>            <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        }</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    }</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> SendDocument($IdPratica,$NPassaggio) {</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>        <a class="code hl_function" href="class_document_handler.html#a7c063b6a0abd3b3f4afb768e84a3edd8">DocumentHandler::SearchDocumentPassaggio</a>($IdPratica,$NPassaggio);</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    }</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> SalvaDoc($filename,$IdPratica,$IdPassaggio) {</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        $dbconn = <span class="keyword">new</span> <a class="code hl_class" href="class_database.html">Database</a>();</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        $query = <span class="stringliteral">&quot;UPDATE Passaggio</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="stringliteral">                    SET ListDocUscita = IF( ListDocUscita = &#39;&#39;, ? , CONCAT(ListDocUscita,&#39;,&#39;,?) )</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="stringliteral">                    WHERE IdPratica=? AND IdPassaggio=?;&quot;</span>;</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        <span class="keywordflow">try</span>{</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>            $results = $dbconn-&gt;query($query,[$filename,$filename,$IdPratica,$IdPassaggio]);</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>            $dbconn-&gt;close();</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>            <span class="keywordflow">if</span>($results == 1){</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>            }</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>            <span class="keywordflow">else</span> <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        }</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        <span class="keywordflow">catch</span>(Exception $e) {</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>            $dbconn-&gt;close();</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>            http_response_code(400);</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>            echo json_encode([<span class="stringliteral">&quot;failed&quot;</span> =&gt; <span class="stringliteral">&quot;Errore nella modifica&quot;</span>]);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        }</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    }</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>}</div>
+<div class="ttc" id="a_passaggio_8php_html_a0952a6d1243b460d0a9d95b03b9d3976"><div class="ttname"><a href="_passaggio_8php.html#a0952a6d1243b460d0a9d95b03b9d3976">getNPassaggio</a></div><div class="ttdeci">getNPassaggio()</div><div class="ttdef"><b>Definition</b> <a href="#l00065">Passaggio.php:65</a></div></div>
+<div class="ttc" id="a_passaggio_8php_html_a143169483440f7f9875af11404a6c29c"><div class="ttname"><a href="_passaggio_8php.html#a143169483440f7f9875af11404a6c29c">getListaDocRichiesti</a></div><div class="ttdeci">getListaDocRichiesti()</div><div class="ttdef"><b>Definition</b> <a href="#l00077">Passaggio.php:77</a></div></div>
+<div class="ttc" id="a_passaggio_8php_html_a456f88435369db414ca4fbc37e7a6966"><div class="ttname"><a href="_passaggio_8php.html#a456f88435369db414ca4fbc37e7a6966">getIdPratica</a></div><div class="ttdeci">getIdPratica()</div><div class="ttdef"><b>Definition</b> <a href="#l00069">Passaggio.php:69</a></div></div>
+<div class="ttc" id="a_passaggio_8php_html_a6bdd5b22659839f4973b27454b2c9b5e"><div class="ttname"><a href="_passaggio_8php.html#a6bdd5b22659839f4973b27454b2c9b5e">getListaDocUscita</a></div><div class="ttdeci">getListaDocUscita()</div><div class="ttdef"><b>Definition</b> <a href="#l00081">Passaggio.php:81</a></div></div>
+<div class="ttc" id="a_passaggio_8php_html_a9546d35a29e2f1719c47ae7e9293fbb4"><div class="ttname"><a href="_passaggio_8php.html#a9546d35a29e2f1719c47ae7e9293fbb4">getIdPassaggio</a></div><div class="ttdeci">getIdPassaggio()</div><div class="ttdef"><b>Definition</b> <a href="#l00061">Passaggio.php:61</a></div></div>
+<div class="ttc" id="a_passaggio_8php_html_a9ee828779d230875ac58a85e589322dd"><div class="ttname"><a href="_passaggio_8php.html#a9ee828779d230875ac58a85e589322dd">getIdUnita</a></div><div class="ttdeci">getIdUnita()</div><div class="ttdef"><b>Definition</b> <a href="#l00073">Passaggio.php:73</a></div></div>
+<div class="ttc" id="a_passaggio_8php_html_ac0b9eb54264cc568412066ad77eab659"><div class="ttname"><a href="_passaggio_8php.html#ac0b9eb54264cc568412066ad77eab659">PassaggioInterface</a></div><div class="ttdeci">Class Passaggio implements PassaggioInterface</div><div class="ttdef"><b>Definition</b> <a href="#l00035">Passaggio.php:35</a></div></div>
+<div class="ttc" id="a_passaggio_8php_html_ade3eb3de9425009a4500f56389c33daf"><div class="ttname"><a href="_passaggio_8php.html#ade3eb3de9425009a4500f56389c33daf">__construct</a></div><div class="ttdeci">__construct($IdPassaggio, $IdPratica, $NPassaggio, $IdUnita=-1, $ListaDocRichiesti=&quot;&quot;, $ListaDocUscita=&quot;&quot;)</div><div class="ttdef"><b>Definition</b> <a href="#l00052">Passaggio.php:52</a></div></div>
+<div class="ttc" id="aclass_database_html"><div class="ttname"><a href="class_database.html">Database</a></div><div class="ttdef"><b>Definition</b> <a href="_database_8php_source.html#l00014">Database.php:15</a></div></div>
+<div class="ttc" id="aclass_document_handler_html_a7c063b6a0abd3b3f4afb768e84a3edd8"><div class="ttname"><a href="class_document_handler.html#a7c063b6a0abd3b3f4afb768e84a3edd8">DocumentHandler\SearchDocumentPassaggio</a></div><div class="ttdeci">static SearchDocumentPassaggio($IdPratica, $NPassaggio)</div><div class="ttdef"><b>Definition</b> <a href="_document_handler_8php_source.html#l00299">DocumentHandler.php:299</a></div></div>
+<div class="ttc" id="aclass_document_handler_html_a91a5dc99707e7c010d101fe4764f477b"><div class="ttname"><a href="class_document_handler.html#a91a5dc99707e7c010d101fe4764f477b">DocumentHandler\AddDocument</a></div><div class="ttdeci">static AddDocument($IdPratica, $NPassaggio, $IdPassaggio)</div><div class="ttdef"><b>Definition</b> <a href="_document_handler_8php_source.html#l00092">DocumentHandler.php:92</a></div></div>
+<div class="ttc" id="aclass_document_handler_html_aa6134ccaca9d26f61b05c364a3fa3a8d"><div class="ttname"><a href="class_document_handler.html#aa6134ccaca9d26f61b05c364a3fa3a8d">DocumentHandler\CheckFile</a></div><div class="ttdeci">static CheckFile( $NPassaggio, $IdPratica, $NPassaggi)</div><div class="ttdef"><b>Definition</b> <a href="_document_handler_8php_source.html#l00038">DocumentHandler.php:38</a></div></div>
+<div class="ttc" id="aclass_document_handler_html_ab7355bfa223e418bc8e0626686d390e0"><div class="ttname"><a href="class_document_handler.html#ab7355bfa223e418bc8e0626686d390e0">DocumentHandler\AddDocumentStart</a></div><div class="ttdeci">static AddDocumentStart($IdPratica)</div><div class="ttdef"><b>Definition</b> <a href="_document_handler_8php_source.html#l00151">DocumentHandler.php:151</a></div></div>
+<div class="ttc" id="aclass_passaggio_html"><div class="ttname"><a href="class_passaggio.html">Passaggio</a></div></div>
+<div class="ttc" id="aclass_pratica_html_abd2f013636af06c5f3ed0ac6e31c989e"><div class="ttname"><a href="class_pratica.html#abd2f013636af06c5f3ed0ac6e31c989e">Pratica\GetMaxPassaggio</a></div><div class="ttdeci">static GetMaxPassaggio($IdPratica)</div><div class="ttdef"><b>Definition</b> <a href="_pratica_8php_source.html#l00344">Pratica.php:344</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_1a56cc0eb01dbc7fe6a5218a6501a5fb.html">INGSW-2425-T9-A</a></li><li class="navelem"><a class="el" href="dir_93dc1c0bb07d9cee4110ed3ef5676c59.html">backend</a></li><li class="navelem"><a class="el" href="dir_0fd7189fd68e7ff595bc78b383a218d1.html">Imports</a></li><li class="navelem"><a class="el" href="dir_bed4eb038e163311df0131b51746e562.html">Class</a></li><li class="navelem"><a class="el" href="_passaggio_8php.html">Passaggio.php</a></li>
+    <li class="footer">Generato da <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

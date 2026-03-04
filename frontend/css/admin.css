@@ -1,0 +1,17 @@
+#addNewDocument {
+    min-height: 20%;
+    width: 10%;
+}
+
+.add-new {
+    width: 100%;
+    height: 120px;
+    border: 2px dashed #aaa;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #888;
+    font-size: 1.5rem;
+}

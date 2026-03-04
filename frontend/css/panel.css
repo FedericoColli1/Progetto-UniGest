@@ -1,0 +1,239 @@
+html {
+    height: 100%;
+    background-color: #01021d;
+    color: white;
+}
+
+body {
+    height: 99%;
+    background-color: #01021d;
+    color: white;
+    font-size: smaller;
+}
+
+/* html, body {
+    height: auto;            
+    min-height: 100%;        
+    overflow-x: hidden;      
+    overflow-y: auto;        
+    background-color: #01021d;
+    color: white;
+    font-size: smaller;
+} */
+
+h3 {
+    margin-bottom: 0;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}
+
+.ml-15 {
+    margin-left: 15px;
+}
+
+.blocco {
+    position: relative;
+    background-color: #14152d;
+    /* border-radius: 5%; */
+    width: 90%;
+    min-height: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.h-20 {
+    min-height: 10%;
+}
+
+.h-40 {
+    min-height: 45%;
+
+}
+.h-70 {
+    min-height: 90%;
+    padding-top: 3%;
+
+}
+
+.h-80 {
+    min-height: 80%;
+    margin-top: 1%;
+
+}
+
+.h-90 {
+    min-height: 90%;
+    padding-top: 3%;
+
+}
+.padding-top-3-percento {
+        padding-top: 3%;
+
+}
+
+.h-100 {
+    min-height: 100%;
+
+}
+
+.content {
+    margin: 3% 2%;
+    width: 94%;
+    min-height: 94%;
+    /* background-color: aqua; */
+    position: absolute;
+    /* overflow: hidden; */
+}
+
+.bigLine {
+    height: 2px;
+    background-color: #ffffff;
+    color: white;
+    border: none;
+    margin: 1% 0 1% 0;
+
+}
+
+.lista {
+    list-style: none;
+    padding: 0 0 0 5px;
+    color: white;
+}
+
+.lista li {
+    padding: 12px 6px;
+    border-bottom: 1px solid #dee2e6;
+    font-size: small;
+}
+
+
+
+.lista li:last-child {
+    border-bottom: none;
+    /* rimuove la linea dopo l'ultimo elemento */
+}
+
+a {
+    display: block;
+    align-content: center;
+    width: 100%;
+    min-height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.pagination {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.pagination ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination a {
+    /* color: black;
+    background-color: aqua; */
+    color: white;
+    background-color: #14152d;
+    float: inherit;
+    width: 25px;
+    min-height: 25px;
+    /* margin: 8px 4px;
+    padding: 4px 8px; */
+    text-decoration: none;
+    list-style: none;
+    border-radius: 100%;
+
+}
+
+tbody tr {
+    min-height: 36px;
+}
+
+.tableContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* tiene la tabella in alto */
+    /* overflow: hidden; */
+    /* importante per tagliare gli angoli arrotondati */
+    border-radius: 12px;
+}
+
+.table {
+    margin: 0;
+    border-radius: 12px;
+}
+
+.larghezzaDegliUltimiDUe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    padding: 0;
+}
+
+.maxWidth-80px {
+    width: 80px;
+}
+
+.dropdown {
+    position: static;
+    z-index: 1000;
+}
+
+.bi-arrow-left-circle-fill {
+    margin-bottom: 1%;
+}
+
+.detailsElement {
+    margin-left: 1%;
+}
+
+.bi-arrow-left-circle-fill {
+    cursor: pointer;
+}
+
+#addNewDocument {
+    width: 8.3%; 
+    min-height: 11.7%; 
+    cursor: pointer;
+}
+
+
+
+
+.attachment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.single-allegato {
+    width: 100%;
+    min-height: 120px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#clickable {
+    cursor: pointer;
+}
+

@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['getamministrativi_0',['getAmministrativi',['../class_direttore.html#ac2ace781da58bb17b846d7d0d93f376c',1,'Direttore\getAmministrativi()'],['../_jolly_8php.html#a8b450dd3de4d76692eb5dec24d2cd6b4',1,'getAmministrativi():&#160;Jolly.php']]],
+  ['getamministrativiassegnati_1',['getAmministrativiAssegnati',['../class_direttore.html#aee005c9b51648d4191021b11ba5c8e53',1,'Direttore\getAmministrativiAssegnati()'],['../_jolly_8php.html#aee005c9b51648d4191021b11ba5c8e53',1,'getAmministrativiAssegnati():&#160;Jolly.php']]],
+  ['getdatacreazione_2',['getDataCreazione',['../class_user.html#ab7b9682bd2d5a9488275343d9b961f86',1,'User']]],
+  ['getdirettore_3',['getDirettore',['../class_direttore.html#a74d449584c3288a3c3cca7adc619dff5',1,'Direttore']]],
+  ['getdocumenti_4',['getDocumenti',['../class_user.html#a7417d94256016ce50b93f452814a1f42',1,'User']]],
+  ['getfileinizio_5',['getFileInizio',['../class_tipologia.html#a04b050254b110e2d9f9cfa604fcfa378',1,'Tipologia']]],
+  ['getid_6',['getId',['../class_user.html#a12251d0c022e9e21c137a105ff683f13',1,'User']]],
+  ['getidfrommail_7',['getIdFromMail',['../class_amministrativo.html#a272a5e73165bd1a33096359672e1c2b7',1,'Amministrativo']]],
+  ['getidpassaggio_8',['getIdPassaggio',['../_passaggio_8php.html#a9546d35a29e2f1719c47ae7e9293fbb4',1,'Passaggio.php']]],
+  ['getidpratica_9',['getIdPratica',['../_passaggio_8php.html#a456f88435369db414ca4fbc37e7a6966',1,'Passaggio.php']]],
+  ['getidunita_10',['getIdUnita',['../class_amministrativo.html#a9ee828779d230875ac58a85e589322dd',1,'Amministrativo\getIdUnita()'],['../_passaggio_8php.html#a9ee828779d230875ac58a85e589322dd',1,'getIdUnita():&#160;Passaggio.php']]],
+  ['getjolly_11',['getJolly',['../class_user.html#add633e80729406d6fa87b76a6c279a5c',1,'User']]],
+  ['getlastid_12',['getLastId',['../class_database.html#acfbb152e6d905b20476e63a2ec273f0c',1,'Database']]],
+  ['getlistadocrichiesti_13',['getListaDocRichiesti',['../_passaggio_8php.html#a143169483440f7f9875af11404a6c29c',1,'Passaggio.php']]],
+  ['getlistadocuscita_14',['getListaDocUscita',['../_passaggio_8php.html#a6bdd5b22659839f4973b27454b2c9b5e',1,'Passaggio.php']]],
+  ['getmail_15',['getMail',['../class_user.html#ae4923d9ec6cf4408080fc1c37e20e0ba',1,'User']]],
+  ['getmaxpassaggio_16',['GetMaxPassaggio',['../class_pratica.html#abd2f013636af06c5f3ed0ac6e31c989e',1,'Pratica']]],
+  ['getnome_17',['getNome',['../class_user.html#a67fa74a47af3f2f9eeced7c37c2ef0d3',1,'User']]],
+  ['getnpassaggio_18',['getNPassaggio',['../_passaggio_8php.html#a0952a6d1243b460d0a9d95b03b9d3976',1,'Passaggio.php']]],
+  ['getpratiche_19',['getPratiche',['../class_pratica.html#a901a42d890d17e4b433cb213174d32ec',1,'Pratica\getPratiche()'],['../class_user.html#a99d7dd55c45326f4310a84f2cd9e2343',1,'User\getPratiche()']]],
+  ['getpraticheamministrativo_20',['getPraticheAmministrativo',['../class_amministrativo.html#a336a55aed3b010d042dee35a843b7dc0',1,'Amministrativo\getPraticheAmministrativo()'],['../class_pratica.html#af2497d1c6f0bfe8f62f735844a95ba15',1,'Pratica\getPraticheAmministrativo()']]],
+  ['getpratichedirettore_21',['getPraticheDirettore',['../class_direttore.html#ad1edf9b9d3c51e14e1e1f7d97359d346',1,'Direttore\getPraticheDirettore()'],['../class_pratica.html#aded3073a82af155bb3f5825c83bc4abb',1,'Pratica\getPraticheDirettore($IdUnita)']]],
+  ['getpratichejolly_22',['getPraticheJolly',['../class_pratica.html#a864f6374ccbc01279f120b539fa83d66',1,'Pratica\getPraticheJolly()'],['../_jolly_8php.html#a5c143afd2277d54518160ab25324c799',1,'getPraticheJolly():&#160;Jolly.php']]],
+  ['getpwd_23',['getPwd',['../class_user.html#a0160ba4e6743352e15383ca3a47c1234',1,'User']]],
+  ['gettipologie_24',['getTipologie',['../class_tipologia.html#a8fbced2de372b5dfddff7d97a95b04fc',1,'Tipologia']]]
+];

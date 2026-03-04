@@ -1,0 +1,36 @@
+/* Overlay scuro */
+#conferma_eliminazione {
+  /* display: none; inizialmente nascosto */
+  position: fixed;
+  inset: 0; /* sostituisce top, left, right, bottom: 0 */
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Overlay scuro */
+#conferma_terminazione {
+  /* display: none; inizialmente nascosto */
+  position: fixed;
+  inset: 0; /* sostituisce top, left, right, bottom: 0 */
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Finestra modale */
+#modale {
+    background:#ffe6ff;
+    color:black;
+    padding: 30px;
+    margin-bottom: 5%;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    max-height: 450px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    
+}

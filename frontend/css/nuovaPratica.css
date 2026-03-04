@@ -1,0 +1,40 @@
+#dropdownMenuButton1, #dropdownMenuList1 {
+    width: 100%;
+    text-align: left;     /* default era center */ 
+}
+
+.simulatore {
+    position: absolute;
+    margin: 10%;
+    border: 2px;
+    width: 80%;
+    height: 80%;
+
+}
+
+.myDropdown {
+    position: relative; 
+    width: 50%;
+}
+
+#addNewDocument {
+    min-height: 20%;
+    width: 10%;
+}
+
+.add-new {
+    width: 100%;
+    height: 120px;
+    border: 2px dashed #aaa;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #888;
+    font-size: 1.5rem;
+}
+
+#max-width-120-px {
+    max-width: 120px;
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Bootstrap1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <!-- CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link rel="stylesheet" href="./css/panel.css">
+    <link rel="stylesheet" href="./css/admin.css">
+
+</head>
+
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar "> <!-- Barra in alto -->
+        <div class="logo-details">
+            <div class="logo_name">uni<b>GEST</b></div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+
+        <ul class="nav-list"> <!-- Elementi Cliccabili -->
+            <li>
+                <a href="admin.html">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <!-- <li>
+                <a href="http://localhost/user/nuovaPratica.html">
+                    <i class='bx bxs-file-plus'></i>
+                    <span class="links_name">Nuova pratica</span>
+                </a>
+                <span class="tooltip">Nuova pratica</span>
+            </li>
+            <li>
+                <a href="">
+                    <i class='bx bx-folder'></i>
+                    <span class="links_name">Files</span>
+                </a>
+                <span class="tooltip">Files</span>
+            </li>
+            <li>
+                <a href="">
+                    <i class='bx bx-heart'></i>
+                    <span class="links_name">Saved</span>
+                </a>
+                <span class="tooltip">Saved</span>
+            </li>
+            <li>
+                <a href="">
+                    <i class='bx bx-cog'></i>
+                    <span class="links_name">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+            </li> -->
+            <li class="profile">
+                <i class='bx bx-log-out' id="log_out"></i>
+            </li>
+        </ul>
+    </div>
+    <!-- Fine Sidebar -->
+
+    <!-- Resto della pagina -->
+
+    <!-- lista -->
+    <div class="container-fluid h-100">
+
+        <div class="row h-90 justify-content-center" id="list-view">
+            <div class="col-11 d-flex tableContainer">
+                <div class="rounded-3 w-100 overflow-hidden">
+                    <table class="table table-hover table-striped table-dark rounded">
+                        <colgroup>
+                            <col> <!-- Tipo -->
+                            <!-- <col> --><!-- Stato -->
+                            <col> <!-- Data -->
+                            <col> <!-- # -->
+                            <col> <!-- # -->
+                            <col style="width: 115px;"> <!-- Visualizza -->
+                        </colgroup>
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Tipo</th>
+                                <!-- <th scope="col">Stato</th> -->
+                                <th scope="col">Data Creazione</th>
+                                <th scope="col"># Pratica</th>
+                                <th scope="col"># Passaggio</th>
+                                <th scope="col" class="text-center">
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="table-group-divider" id="table-body">
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <div class=" pagination" id="pagination-view">
+            <ul id="pagination-wrapper"></ul>
+        </div>
+
+
+
+        <!-- singolo elemento -->
+
+        <div class="row h-90 justify-content-center" id="detail-view" style="display: none;">
+            <div class="col-11 d-flex">
+                <div class="rounded-3 w-100">
+                    <div class="row">
+                        <div class="col-auto">
+                            <i class="bi bi-arrow-left-circle-fill h3" onclick="backToList()"></i>
+                        </div>
+                    </div>
+                    <div class="row detailsElement">
+                        <p><b>Titolo: </b><span id="object-name title_ID"></span></p>
+                    </div>
+                    <div class="row detailsElement">
+                        <p><b>ID: </b><span id="object-name ID_ID"></span></p>
+                    </div>
+                    <div class="row detailsElement">
+                        <p><b>Data: </b><span id="object-name data_ID"></span></p>
+                    </div>
+                    <!-- <div class="row detailsElement">
+                        <p><b>Stato: </b><span id="object-name state_ID"></span></p>
+                    </div> -->
+                    <div class="row detailsElement">
+                        <p><b>Descrizione: </b><span id="object-name description_ID"></span></p>
+                    </div>
+                    <div class="row detailsElement">
+                        <p><b>Documenti richiesti: </b><span id="object-name documenti_richiesti">Nessun documento richiesto per questo passaggio.</span></p>
+                        <!-- Allegati -->
+                        <p><b>Documenti caricati: </b><span id="object-name documenti_precedenti">Nessun documento caricato per questo passaggio.</span></p>
+
+                        <p class="mt-3"><b>Carica un nuovo allegato</b></p>
+                        <div class="attachment-grid ms-2 mt-2">
+                            <!-- Pulsante per aggiungere nuovo allegato -->
+                            <div class="add-new" id="inputGroupFileAddon" onclick="caricaNuovoAllegato()">
+                                <i class="bi bi-plus-lg"></i>
+
+                            </div>
+
+                            <input type="file" id="fileInput" style="display: none;" multiple
+                                onchange="fileSelezionati(event)">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Fine Resto della pagina -->
+
+    
+    <!-- Bootstrap2 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- JQuery e JS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/praticheAdmin.js"></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/token.js" defer></script>
+
+</body>
+
+
+
+
+
+
+
+
+</html>
